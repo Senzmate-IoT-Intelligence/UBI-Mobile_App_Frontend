@@ -38,9 +38,6 @@ const WelcomeScreen = () => {
           <Typography size={20} light bold center>
             Welcome to DBI Application!
           </Typography>
-          {/* <Typography size={14} light bold center>
-            Every One
-          </Typography> */}
           <Block flex={1} center row style={styles.buttonsBlock}>
             <Button
               gradient
@@ -51,6 +48,7 @@ const WelcomeScreen = () => {
                 SIGN IN
               </Typography>
             </Button>
+
             <Button
               white
               shadow
@@ -94,16 +92,3 @@ const styles = StyleSheet.create({
     flex: 0.47,
   },
 });
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <View style={styles.container}>
-      <Text>WelcomeScreen</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('SignIn')}>
-        <Text>Sign In</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('KeyVerify')}>
-        <Text>Sign Up</Text>
-      </TouchableOpacity>
-    </View> */
-}

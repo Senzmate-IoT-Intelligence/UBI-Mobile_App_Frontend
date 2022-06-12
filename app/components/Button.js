@@ -25,12 +25,14 @@ const Button = props => {
     primary && styles.primary,
     accent && styles.accent,
     white && styles.white,
-    style
+    style,
   ];
 
   if (gradient) {
     return (
-      <LinearGradient colors={[colors.secondary, colors.primary]} style={buttonStyles}>
+      <LinearGradient
+        colors={[colors.secondary, colors.primary]}
+        style={buttonStyles}>
         <TouchableOpacity
           {...otherProps}
           activeOpacity={opacity}
@@ -88,7 +90,7 @@ const Button = props => {
 };
 
 Button.prototypes = {
-  onPress: PropTypes.func.isRequired
+  onPress: PropTypes.func.isRequired,
 };
 
 export default Button;
@@ -98,7 +100,7 @@ const styles = StyleSheet.create({
     borderRadius: sizes.radius,
     height: 50,
     justifyContent: 'center',
-    marginVertical: 8
+    marginVertical: 8,
   },
   borderbutton: {
     borBerRadius: sizes.radius,
@@ -112,16 +114,18 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 10,
-    elevation: 1
+    elevation: 1,
   },
+
   shadow: {
     shadowColor: colors.lightblack,
     shadowOffset: {width: 0, height: 2},
     shadowOpacity: 0.7,
     shadowRadius: 10,
-    elevation: 1
+    elevation: 1,
   },
+
   primary: {backgroundColor: colors.primary},
   accent: {backgroundColor: colors.accent},
-  white: {backgroundColor: colors.white}
+  white: {backgroundColor: colors.white},
 });

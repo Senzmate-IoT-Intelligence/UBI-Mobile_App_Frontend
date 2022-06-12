@@ -17,7 +17,8 @@ const ForgotPassword = () => {
     ToastAndroid.show(
       'We have e-mailed your password reset link!',
       ToastAndroid.SHORT,
-      navigation.navigate(routes.SIGNIN)    );
+      navigation.navigate(routes.SIGNIN),
+    );
   };
 
   return (
@@ -28,8 +29,8 @@ const ForgotPassword = () => {
         style={styles.linearBg}>
         <Animatable.View animation="zoomIn" style={styles.animationBlock}>
           <Block>
-            <Typography black style={styles.label}>
-              Reset Password?
+            <Typography bold black style={styles.label}>
+              Forgot Password?
             </Typography>
             <TextBox
               email
@@ -43,11 +44,6 @@ const ForgotPassword = () => {
                 Send
               </Typography>
             </Button>
-            {/* <Button white shadow onPress={() => navigation.goBack()}>
-              <Typography center black bold size={15}>
-                SIGN IN
-              </Typography>
-            </Button> */}
           </Block>
         </Animatable.View>
       </LinearGradient>
@@ -83,6 +79,6 @@ const styles = StyleSheet.create({
   label: {
     paddingLeft: 5,
     marginBottom: 0,
-    fontSize: 13,
+    fontSize: 15,
   },
 });

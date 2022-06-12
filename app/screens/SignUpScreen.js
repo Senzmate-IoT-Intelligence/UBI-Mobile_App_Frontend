@@ -7,8 +7,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import routes from '../navigation/routes';
 import {colors} from '../theme/index';
 import newApi from '../../config';
-import {useEffect} from 'react/cjs/react.production.min';
+
 const SignInScreen = () => {
+  const [username, setusername] = useState(null);
   const [email, setEmail] = useState(null);
   const [phone, setPhone] = useState(null);
   const [password, setPassword] = useState(null);
@@ -17,13 +18,14 @@ const SignInScreen = () => {
   const navigation = useNavigation();
 
   const handleSignUp = () => {
-    console.log(email, phone, nic, password, confirmPassword);
+    console.log(username, email, phone, nic, password, confirmPassword);
 
     // checking password and confirm password
     if (password == confirmPassword) {
       newApi
         .post('/create', {
           // making api request
+          username: username,
           email: email,
           password: password,
           phone: phone,
@@ -57,10 +59,10 @@ const SignInScreen = () => {
         style={styles.linearBg}>
         <Block flex={0.2} center middle>
           <Typography bold white size={30}>
-            Welcome to UBI!
+            Create Account
           </Typography>
           <Typography bold white>
-            Sign Up
+            Sign Up to get started!
           </Typography>
         </Block>
         <Animatable.View
@@ -68,6 +70,15 @@ const SignInScreen = () => {
           duration={2000}
           style={styles.animationBlock}>
           <ScrollView showsVerticalScrollIndicator={false}>
+            <Typography black style={styles.label}>
+              Username
+            </Typography>
+            <TextBox
+              icon="person"
+              onChangeText={setusername}
+              autoCapitalize="none"
+              placeholder="Your username"
+            />
             <Typography black style={styles.label}>
               Email
             </Typography>
@@ -78,7 +89,6 @@ const SignInScreen = () => {
               autoCapitalize="none"
               placeholder="Your email"
             />
-
             <Typography black style={styles.label}>
               Phone
             </Typography>
@@ -122,7 +132,14 @@ const SignInScreen = () => {
               primary
               shadow
               onPress={() =>
-                handleSignUp(email, password, confirmPassword, nic, phone)
+                handleSignUp(
+                  username,
+                  email,
+                  password,
+                  confirmPassword,
+                  nic,
+                  phone,
+                )
               }>
               <Typography center white bold size={15}>
                 SIGN UP
@@ -130,7 +147,7 @@ const SignInScreen = () => {
             </Button>
             <Button white shadow onPress={() => handleSignIn()}>
               <Typography center black bold size={15}>
-                SIGNIN
+                SIGN IN
               </Typography>
             </Button>
           </ScrollView>

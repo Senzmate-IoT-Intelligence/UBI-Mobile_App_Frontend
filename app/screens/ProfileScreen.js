@@ -11,18 +11,26 @@ const ProfileScreen = ({navigation}) => {
       <StatusBar backgroundColor={colors.white} barStyle="light-content" />
       <Header title="Profile" header />
       <Block flex={1} style={styles.container}>
-        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(routes.PERSONALINFO)}>
-        <Text>Personal Info</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(routes.VEHICLEINFO)}>
-        <Text>Vehicle Info</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(routes.PASSWORDCHANGE)}>
-        <Text>Change Password</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate(routes.DELETEACCOUNT)}>
-        <Text>Delete Account</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(routes.PERSONALINFO)}>
+          <Text>Personal Information</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(routes.VEHICLEINFO)}>
+          <Text>Vehicle Information</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(routes.PASSWORDCHANGE)}>
+          <Text>Change Password</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => navigation.navigate(routes.DELETEACCOUNT)}>
+          <Text>Delete Account</Text>
+        </TouchableOpacity>
       </Block>
     </Screen>
   );
@@ -31,14 +39,14 @@ const ProfileScreen = ({navigation}) => {
 export default ProfileScreen;
 
 const styles = StyleSheet.create({
-  container : {
-      flex : 1,
-      padding : 10
+  container: {
+    flex: 1,
+    padding: 10,
   },
   button: {
     alignItems: 'center',
     backgroundColor: '#DDDDDD',
     padding: 10,
-    marginBottom : 10
-  }
+    marginBottom: 10,
+  },
 });

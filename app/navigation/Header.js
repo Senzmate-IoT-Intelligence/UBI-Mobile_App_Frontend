@@ -7,7 +7,7 @@ import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {useNavigation} from '@react-navigation/native';
 
 const Header = props => {
-  const {title, header, back, label} = props;
+  const {title, header, back} = props;
   const navigation = useNavigation();
 
   if (header) {
@@ -67,28 +67,28 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 1, height: 1},
     shadowOpacity: 0.1,
     shadowRadius: 13,
-    elevation: 1
+    elevation: 1,
   },
   left: {
     flex: 1,
     paddingLeft: 5,
-    alignItems: 'flex-start'
+    alignItems: 'flex-start',
   },
   right: {
     flex: 1,
     alignItems: 'flex-end',
-    paddingRight: 5
+    paddingRight: 5,
   },
   title: {
     flex: 1,
-    alignItems: 'center'
+    alignItems: 'center',
   },
   headerBack: {
     backgroundColor: colors.white,
-    justifyContent : 'center',
+    justifyContent: 'center',
     alignItems: 'center',
     height: 50,
-    width : 50,
+    width: 50,
     marginLeft: 20,
     marginTop: 10,
     borderRadius: 25,
@@ -96,28 +96,6 @@ const styles = StyleSheet.create({
     shadowOffset: {width: 2, height: 2},
     shadowOpacity: 0.1,
     shadowRadius: 30,
-    elevation: 5
-  }
+    elevation: 5,
+  },
 });
-
-// eslint-disable-next-line no-lone-blocks
-{
-  /* <Block flex={false} style={styles.header}>
-        <Block style={styles.left}>
-          <Ionicons
-            name="ios-arrow-back-sharp"
-            size={25}
-            color={colors.lightblack}
-            onPress={() => navigation.goBack()}
-          />
-        </Block>
-        <Block style={styles.title}>
-          <Typography h3 bold>
-            {label}
-          </Typography>
-        </Block>
-        <Block style={styles.right}>
-          {null}
-        </Block>
-      </Block> */
-}

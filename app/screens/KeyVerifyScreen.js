@@ -25,8 +25,8 @@ const ForgotPassword = () => {
         style={styles.linearBg}>
         <Animatable.View animation="zoomIn" style={styles.animationBlock}>
           <Block>
-            <Typography black style={styles.label}>
-              Enter Key
+            <Typography bold black style={styles.label}>
+              PAY YOUR INSUARNCE BILLS WITH US
             </Typography>
             <TextBox
               icon="key"
@@ -74,6 +74,6 @@ const styles = StyleSheet.create({
   label: {
     paddingLeft: 5,
     marginBottom: 0,
-    fontSize: 13,
+    fontSize: 15,
   },
 });

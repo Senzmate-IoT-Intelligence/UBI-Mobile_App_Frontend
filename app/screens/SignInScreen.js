@@ -7,6 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../theme';
 import routes from '../navigation/routes';
 import newApi from '../../config';
+
 const SignInScreen = () => {
   const [email, setEmail] = useState(null);
   const [password, setPassword] = useState(null);
@@ -14,6 +15,7 @@ const SignInScreen = () => {
 
   const handleLogin = () => {
     console.log(email, password);
+
     // checking password and confirm password
     if (email == '' || password == '') {
       ToastAndroid.show('Username/Password empty', ToastAndroid.SHORT);
@@ -50,10 +52,10 @@ const SignInScreen = () => {
         style={styles.linearBg}>
         <Block flex={0.5} center middle>
           <Typography bold white size={30}>
-            Welcome to UBI!
+            Welcome Back
           </Typography>
           <Typography bold white>
-            Sign In
+            Sign in to continue!
           </Typography>
         </Block>
         <Animatable.View animation="fadeInUpBig" style={styles.animationBlock}>
@@ -88,6 +90,7 @@ const SignInScreen = () => {
                 LOGIN
               </Typography>
             </Button>
+
             <Button white shadow onPress={() => handleSignUp()}>
               <Typography center black bold size={15}>
                 SIGNUP
@@ -148,15 +151,3 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
 });
-
-/**
- * <View style={styles.container}>
-      <Text>SignInScreen</Text>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.goBack()}>
-        <Text>Go Back</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ForgotPassword')}>
-        <Text>Forgot Password</Text>
-      </TouchableOpacity>
-    </View>
- */

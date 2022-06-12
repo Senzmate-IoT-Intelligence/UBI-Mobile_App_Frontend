@@ -1,9 +1,6 @@
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import React from 'react';
 import {StyleSheet, TouchableOpacity} from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome';
-//import { createDrawerNavigator,  DrawerContentScrollView,DrawerItemList, DrawerItem, useDrawerProgress } from '@react-navigation/drawer';
-//import Animated from 'react-native-reanimated';
 import PolicyDetailsScreen from '../screens/PolicyDetails';
 import MessageScreen from '../screens/MessageScreen';
 import NotoficationScreen from '../screens/NotoficationScreen';
@@ -19,23 +16,6 @@ import SettingScreen from '../screens/SettingScreen';
 
 const Drawer = createDrawerNavigator();
 
-/* function CustomDrawerContent(props) {
-  const progress = useDrawerProgress();
-
-  const translateX = Animated.interpolateNode(progress, {
-    inputRange: [0, 1],
-    outputRange: [-100, 0]
-  });
-
-  return (
-    <DrawerContentScrollView {...props}>
-      <Animated.View style={{ transform: [{ translateX }] }}>
-        <DrawerItemList {...props} />
-        <DrawerItem label="Trip" onPress={() => console.log(props.navigation.navigate('TripHistoryStack'))} />
-      </Animated.View>
-    </DrawerContentScrollView>
-  );
-} */
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator
@@ -47,20 +27,7 @@ const DrawerNavigator = () => {
         drawerActiveBackgroundColor: colors.white,
         drawerInactiveTintColor: colors.black,
         drawerInactiveBackgroundColor: colors.white,
-        // headerStyle : {
-        //   backgroundColor : colors.white,
-        //   height : 50
-        // },
-        // headerTitleAlign : 'center',
-        // headerLeft: () => (
-        //   <TouchableOpacity onPress={() => navigation.toggleDrawer()} style={styles.headerLeft}>
-        //     <Icon name="bars" size={20} color={colors.black} />
-        //   </TouchableOpacity>
-        // )
-      })}
-      //useLegacyImplementation
-      //drawerContent={(props) => <CustomDrawerContent {...props} />}
-    >
+      })}>
       <Drawer.Screen
         name={routes.UBIAPP}
         component={TabNavigator}
