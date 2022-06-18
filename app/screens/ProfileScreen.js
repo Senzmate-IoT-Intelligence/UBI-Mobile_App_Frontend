@@ -9,6 +9,7 @@ const ProfileScreen = ({navigation}) => {
   return (
     <Screen>
       <StatusBar backgroundColor={colors.white} barStyle="light-content" />
+
       <Header title="Profile" header />
       <Block flex={1} style={styles.container}>
         <TouchableOpacity
