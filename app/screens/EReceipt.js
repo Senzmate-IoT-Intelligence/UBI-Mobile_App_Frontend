@@ -12,6 +12,11 @@ const EReceipt = () => {
   const navigation = useNavigation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
+  const paymentSuccess = () => {
+   
+    navigation.navigate(routes.PAYMENTSUCCESS);
+  };
+
   return (
     <Screen>
       <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
@@ -51,7 +56,8 @@ const EReceipt = () => {
                 </Typography>
               </Button>
 
-              <Button gradient shadow style={styles.button}>
+              <Button gradient shadow style={styles.button}
+               onPress={() => paymentSuccess()}>
                 <Typography center white bold>
                   Done
                 </Typography>

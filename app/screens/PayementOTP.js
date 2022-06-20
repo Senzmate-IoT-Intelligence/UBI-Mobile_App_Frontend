@@ -12,6 +12,11 @@ const PaymentOTP = () => {
   const navigation = useNavigation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
+  const ereceipt = () => {
+   
+    navigation.navigate(routes.ERECEIPT);
+  };
+
   return (
     <Screen>
       <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
@@ -79,7 +84,8 @@ const PaymentOTP = () => {
             <TextBox placeholder="Enter your OTP" />
             </Block>
             <Block flex={1} center row style={styles.buttonsBlock}>
-              <Button gradient shadow style={styles.button}>
+              <Button gradient shadow style={styles.button}
+               onPress={() => ereceipt()}>
                 <Typography center white bold>
                   Submit
                 </Typography>

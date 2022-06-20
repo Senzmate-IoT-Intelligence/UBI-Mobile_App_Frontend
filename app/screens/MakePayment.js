@@ -12,6 +12,11 @@ const MakePayment = () => {
   const navigation = useNavigation();
   const [toggleCheckBox, setToggleCheckBox] = useState(false);
 
+  const paymentOTP = () => {
+   
+    navigation.navigate(routes.PAYMENTOTP);
+  };
+
   return (
     <Screen>
       <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
@@ -63,7 +68,8 @@ const MakePayment = () => {
 
             <Block flex={1} center row style={styles.buttonsBlock}>
            
-              <Button gradient shadow style={styles.button}>
+              <Button gradient shadow style={styles.button}
+               onPress={() => paymentOTP()}>
                 <Typography center white bold>
                   Continue
                 </Typography>
