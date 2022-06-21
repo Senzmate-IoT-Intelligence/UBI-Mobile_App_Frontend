@@ -1,40 +1,255 @@
-import {View} from 'react-native';
-import React from 'react';
+import {StyleSheet, StatusBar, ScrollView,ActivityIndicator, FlatList, Text, View} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {Screen, Block, Typography, Button, TextBox} from '../components/index';
+import * as Animatable from 'react-native-animatable';
+import LinearGradient from 'react-native-linear-gradient';
+import routes from '../navigation/routes';
 import {colors} from '../theme';
-import {Screen, Block} from '../components/index';
-import Header from '../navigation/Header';
-import {StyleSheet, StatusBar, TouchableOpacity, Text} from 'react-native';
-import {
-  Table,
-  TableWrapper,
-  Row,
-  Rows,
-  Col,
-  Cols,
-  Cell,
-} from 'react-native-table-component';
 
-const PolicyDetailsScreen = ({navigation}) => {
+const PolicyDetails = () => {
+  const navigation = useNavigation();
+  const [isLoading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
+
+  const paymentOTP = () => {
+    navigation.navigate(routes.PAYMENTOTP);
+  };
+
+  const getMovies = async () => {
+    try {
+      const response = await fetch('http://192.168.56.1:8001/api/user/policy');
+      const json = await response.json();
+      setData(json);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getMovies();
+  }, []);
+
   return (
     <Screen>
-      <StatusBar backgroundColor={colors.white} barStyle="light-content" />
-      <Header title="Policy Details" header />
-      <Block flex={1} style={styles.container}>
-        <TouchableOpacity style={styles.button}></TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text>Help</Text>
-        </TouchableOpacity>
-      </Block>
+      <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
+      <LinearGradient
+        colors={[colors.secondary, colors.primary]}
+        style={styles.linearBg}>
+        <Block flex={0.2} center middle>
+          <Typography size={35} white bold transform="uppercase">
+            Policy Details
+          </Typography>
+        </Block>
+        <Animatable.View
+          animation="fadeInUp"
+          duration={2000}
+          style={styles.animationBlock}>
+          {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+            <Typography size={20} black bold>
+              Policy Information
+            </Typography>
+          
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                data={data}
+                keyExtractor={({id}, index) => id}
+                renderItem={({item}) => (
+                  <Block
+                    flex={0.2}
+                    center
+                    row
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                      <Typography size={15} black bold>
+                      Policy Number
+                    </Typography>
+
+                    <Typography size={15} black bold>
+                      {item.policyNumber}
+                    </Typography>
+
+                  
+
+                    
+                  </Block>
+                )}
+              />
+            )}
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                data={data}
+                keyExtractor={({id}, index) => id}
+                renderItem={({item}) => (
+                  <Block
+                    flex={0.2}
+                    center
+                    row
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                      <Typography size={15} black bold>
+                     Date of Issue
+                    </Typography>
+
+                    {/* <Typography size={15} black bold>
+                      {item.policyNumber}
+                    </Typography> */}
+
+                    <Typography size={15} black bold>
+                      {item.dateOfIssue}
+                    </Typography>
+
+                    
+                  </Block>
+                )}
+              />
+            )}
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                data={data}
+                keyExtractor={({id}, index) => id}
+                renderItem={({item}) => (
+                  <Block
+                    flex={0.2}
+                    center
+                    row
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                      <Typography size={15} black bold>
+                      Policy Expiry Date
+                    </Typography>
+
+                  
+
+                    <Typography size={15} black bold>
+                      {item.policyExpiryDate}
+                    </Typography>
+
+                    
+                  </Block>
+                )}
+              />
+            )}
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                data={data}
+                keyExtractor={({id}, index) => id}
+                renderItem={({item}) => (
+                  <Block
+                    flex={0.2}
+                    center
+                    row
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                      <Typography size={15} black bold>
+                      Covering Rannge
+                    </Typography>
+
+                    {/* <Typography size={15} black bold>
+                      {item.policyNumber}
+                    </Typography> */}
+
+                    <Typography size={15} black bold>
+                      {item.coveringRange}
+                    </Typography>
+
+                    
+                  </Block>
+                )}
+              />
+            )}
+            {isLoading ? (
+              <ActivityIndicator />
+            ) : (
+              <FlatList
+                data={data}
+                keyExtractor={({id}, index) => id}
+                renderItem={({item}) => (
+                  <Block
+                    flex={0.2}
+                    center
+                    row
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                    }}>
+                      <Typography size={15} black bold>
+                      Policy Value
+                    </Typography>
+
+                    {/* <Typography size={15} black bold>
+                      {item.policyNumber}
+                    </Typography> */}
+
+                    <Typography size={15} black bold>
+                      {item.policyValue}
+                    </Typography>
+
+                    
+                  </Block>
+                )}
+              />
+            )}
+
+
+
+
+
+          
+
+
+            
+          {/* </ScrollView> */}
+        </Animatable.View>
+      </LinearGradient>
     </Screen>
   );
 };
 
-export default PolicyDetailsScreen;
+export default PolicyDetails;
 
 const styles = StyleSheet.create({
-  container: {
+  linearBg: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+  },
+  mainBlock: {
+    backgroundColor: colors.primary,
+  },
+  checkbox: {
+    alignSelf: 'center',
+  },
+  animationBlock: {
+    flex: 0.8,
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    paddingVertical: 30,
+    paddingHorizontal: 20,
+  },
+
+  block: {
+    paddingLeft: 50,
+  },
+  button: {
+    flex: 0.75,
+    marginLeft: 50,
   },
 });

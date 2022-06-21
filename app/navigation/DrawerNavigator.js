@@ -91,38 +91,6 @@ const DrawerNavigator = () => {
       />
 
       <Drawer.Screen
-        name={routes.MESSAGES}
-        component={MessageScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialCommunityIcons
-              name="android-messages"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={routes.NOTIFICATIONS}
-        component={NotoficationScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialIcons name="notifications" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={'Rate Us'}
-        component={NotoficationScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialIcons name="star" size={size} color={color} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
         name={'Logout'}
         component={NotoficationScreen}
         options={{
