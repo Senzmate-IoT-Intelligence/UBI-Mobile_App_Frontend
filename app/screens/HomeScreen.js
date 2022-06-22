@@ -55,11 +55,11 @@ const HomeScreen = () => {
           <Typography size={24} bold left>
             Chose your destination
           </Typography> 
-          <Typography size={22} bold left>
-            Home
+          <Typography size={22} left style={styles.typo} >
+            Default Location
           </Typography>
-          <Typography size={22} bold left>
-            Where to
+          <Typography size={22}  left style={styles.typo}>
+            Start Trp
           </Typography>
         </Animatable.View>
 
@@ -160,6 +160,9 @@ const styles = StyleSheet.create({
   button: {
     flex: 0.47,
   },
+  typo: {
+    marginTop: 10
+  }
 });
 
 // eslint-disable-next-line no-lone-blocks
