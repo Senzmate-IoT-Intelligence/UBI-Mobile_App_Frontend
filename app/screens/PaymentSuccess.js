@@ -36,7 +36,7 @@ const PaymentSuccess = () => {
             <Typography size={15} style={{lineHeight: 50}}></Typography>
 
             <Typography size={20}>
-              Transection processed successfully and amount creditedd your
+              Transection processed successfully and amount credited your
               account
             </Typography>
           </Block>

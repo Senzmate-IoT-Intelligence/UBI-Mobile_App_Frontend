@@ -28,7 +28,7 @@ const PaymentOTP = () => {
             Make Payment
           </Typography>
           <Typography size={20} white bold>
-            Select Payement Method
+            Select Payment Method
           </Typography>
         </Block>
         <Animatable.View
