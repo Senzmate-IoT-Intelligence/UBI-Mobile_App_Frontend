@@ -23,4 +23,9 @@ export default Object.freeze({
   NOTIFICATIONS: 'Notification',
   HELP: 'Help',
   PRIVACYPOLICY: 'PrivacyPolicy',
+  Navigation: "TripNavigation",
+  NavigationCa: "Cancel",
+  NavigationOk: "Proceed",
+
+
 });

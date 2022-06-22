@@ -7,6 +7,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import PolicyDetailsScreen from '../screens/PolicyDetails';
 import MessageScreen from '../screens/MessageScreen';
 import NotoficationScreen from '../screens/NotoficationScreen';
+// import NavigationScreen from '../screens/NavigationScreen';
 import PaymentNavigator from './PaymentNavigator';
 import TabNavigator from './TabNavigator';
 import TripNavigator from './TripNavigator';
@@ -80,6 +81,15 @@ const DrawerNavigator = () => {
           ),
         }}
       />
+      {/*  <Drawer.Screen
+        name={routes.Navigation}
+        component={TabNavigator}
+        options={{
+          drawerIcon: ({color, size}) => (
+            <FontAwesome5 name="home" size={size} color={color} />
+          ),
+        }}
+      /> */}
 
       <Drawer.Screen
         name={routes.PAYMENTHISTORY}
