@@ -36,14 +36,19 @@ import {colors} from '../theme';
   }
 });
  */
-/* const HomeScreen = () => {
+/*  const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleNavigation = route => {
     navigation.navigate(route);
-  }; */
-
+  }; 
+ */
 const HomeScreen = () => {
+  const navigation = useNavigation();
+
+  const handleNavigation = route => {
+    navigation.navigate(route);
+  }; 
   return (
     <Screen>
       <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
@@ -57,10 +62,13 @@ const HomeScreen = () => {
           </Typography> 
           <Typography size={22} left style={styles.typo} >
             Default Location
-          </Typography>
-          <Typography size={22}  left style={styles.typo}>
-            Start Trp
-          </Typography>
+          </Typography> 
+          <Block>
+            <Typography size={22}  left style={styles.typo}
+              onPress={() => handelMap()}>
+              Start Trip
+            </Typography>
+          </Block>
         </Animatable.View>
 
         <Animatable.View animation="fadeInUpBig" style={styles.animationBlock2}>
@@ -162,7 +170,11 @@ const styles = StyleSheet.create({
   },
   typo: {
     marginTop: 10
-  }
+  },
+ /*  Starttrip: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  }, */
 });
 
 // eslint-disable-next-line no-lone-blocks
