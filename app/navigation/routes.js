@@ -23,4 +23,5 @@ export default Object.freeze({
   NOTIFICATIONS: 'Notification',
   HELP: 'Help',
   PRIVACYPOLICY: 'Privacy Policy',
+  DRAWERNAVIGATOR: 'Drawer Navigator'
 });

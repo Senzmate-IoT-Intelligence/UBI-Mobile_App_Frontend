@@ -1,5 +1,5 @@
-import {StyleSheet, StatusBar, ScrollView} from 'react-native';
-import React, {useState} from 'react';
+import {StyleSheet, StatusBar, ScrollView,ActivityIndicator, FlatList, Text, View} from 'react-native';
+import React, {useState,useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Screen, Block, Typography, Button, TextBox} from '../components/index';
 import * as Animatable from 'react-native-animatable';
@@ -48,13 +48,13 @@ const PolicyDetails = () => {
           animation="fadeInUp"
           duration={2000}
           style={styles.animationBlock}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-          
+          {/* <ScrollView showsVerticalScrollIndicator={false}>
+           */}
           <Block flex={0.2} center row style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <Typography size={15} block bold>
             Date
           </Typography>
-          <Typography size={15} block bold>
+          <Typography size={15} block bold> 
             To
           </Typography>
           <Typography size={15} block bold>
@@ -68,9 +68,7 @@ const PolicyDetails = () => {
           keyExtractor={({ id }, index) => id}
           renderItem={({ item }) => (
             <Block
-            flex={0.2}
-            center
-            row
+            flex={0.2} center row
             style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Typography size={15} block bold>
              {item.date}
@@ -88,7 +86,7 @@ const PolicyDetails = () => {
             
 
             
-          </ScrollView>
+          {/* </ScrollView> */}
         </Animatable.View>
       </LinearGradient>
     </Screen>

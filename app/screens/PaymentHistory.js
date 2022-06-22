@@ -16,7 +16,7 @@ const PolicyDetails = () => {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState([]);
 
-  const getMovies = async () => {
+  const getPayment = async () => {
      try {
       const response = await fetch('http://192.168.56.1:8001/api/user/payment');
       const json = await response.json();
@@ -29,7 +29,7 @@ const PolicyDetails = () => {
   }
 
   useEffect(() => {
-    getMovies();
+    getPayment();
   }, []);
 
 
