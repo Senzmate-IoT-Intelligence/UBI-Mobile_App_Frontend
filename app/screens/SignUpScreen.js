@@ -19,6 +19,7 @@ const SignInScreen = () => {
 
   const handleSignUp = () => {
     console.log(username, email, phone, nic, password, confirmPassword);
+    navigation.navigate(routes.SIGNUP);
 
     // checking password and confirm password
     if (password == confirmPassword) {

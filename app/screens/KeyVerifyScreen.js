@@ -7,7 +7,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../theme';
 import routes from '../navigation/routes';
 
-const ForgotPassword = () => {
+const KeyVerifyScreen = () => {
   const [key, setKey] = useState(null);
   const navigation = useNavigation();
 
@@ -46,7 +46,7 @@ const ForgotPassword = () => {
   );
 };
 
-export default ForgotPassword;
+export default KeyVerifyScreen;
 
 const styles = StyleSheet.create({
   linearBg: {
