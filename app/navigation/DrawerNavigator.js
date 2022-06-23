@@ -13,6 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import routes from './routes';
 import {colors} from '../theme/colors';
 import SettingScreen from '../screens/SettingScreen';
+import PaymentHistoryNavigator from './PaymentHistoryNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -50,6 +51,16 @@ const DrawerNavigator = () => {
 
       <Drawer.Screen
         name={routes.PAYMENTHISTORY}
+        component={PaymentHistoryNavigator}
+        options={{
+          drawerIcon: ({color, size}) => (
+            <FontAwesome5 name="cc-amazon-pay" size={size} color={color} />
+          ),
+        }}
+      />
+
+<Drawer.Screen
+        name={routes.PAYMENT}
         component={PaymentNavigator}
         options={{
           drawerIcon: ({color, size}) => (
@@ -57,6 +68,7 @@ const DrawerNavigator = () => {
           ),
         }}
       />
+
       <Drawer.Screen
         name={routes.TRIPHISTORY}
         component={TripNavigator}
@@ -86,38 +98,6 @@ const DrawerNavigator = () => {
         options={{
           drawerIcon: ({color, size}) => (
             <FontAwesome5 name="cog" size={size} color={color} />
-          ),
-        }}
-      />
-
-      <Drawer.Screen
-        name={routes.MESSAGES}
-        component={MessageScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialCommunityIcons
-              name="android-messages"
-              size={size}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={routes.NOTIFICATIONS}
-        component={NotoficationScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialIcons name="notifications" size={size} color={color} />
-          ),
-        }}
-      />
-      <Drawer.Screen
-        name={'Rate Us'}
-        component={NotoficationScreen}
-        options={{
-          drawerIcon: ({color, size}) => (
-            <MaterialIcons name="star" size={size} color={color} />
           ),
         }}
       />

@@ -8,7 +8,10 @@ import SignUpScreen from '../screens/SignUpScreen';
 import KeyVerifyScreen from '../screens/KeyVerifyScreen';
 import ForgotPassword from '../screens/ForgotPassword';
 import routes from './routes';
+
 import PersonalInfoScreen from '../screens/PersonalInfoScreen';
+import HomeScreen from '../screens/HomeScreen';
+import DrawerNavigator from '../navigation/DrawerNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +22,7 @@ const Authnavigator = () => (
     screenOptions={{headerShown: false}}>
     <Stack.Screen name={routes.WELCOME} component={WelcomeScreen} />
     <Stack.Screen name={routes.SIGNIN} component={SignInScreen} />
+    <Stack.Screen name={routes.HOME} component={HomeScreen} />
     <Stack.Screen name={routes.KEYVERIFY} component={KeyVerifyScreen} />
     <Stack.Screen name={routes.SIGNUP} component={SignUpScreen} />
     <Stack.Screen name={routes.FORGOTPASSWORD} component={ForgotPassword} />
