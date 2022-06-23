@@ -7,8 +7,10 @@ import SignInScreen from '../screens/SignInScreen';
 import SignUpScreen from '../screens/SignUpScreen';
 import KeyVerifyScreen from '../screens/KeyVerifyScreen';
 import ForgotPassword from '../screens/ForgotPassword';
+import MapViewScreen from '../screens/MapViewScreen';
 import routes from './routes';
 import PersonalInfoScreen from '../screens/PersonalInfoScreen';
+import Drawer from '../navigation/DrawerNavigator';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +24,8 @@ const Authnavigator = () => (
     <Stack.Screen name={routes.KEYVERIFY} component={KeyVerifyScreen} />
     <Stack.Screen name={routes.SIGNUP} component={SignUpScreen} />
     <Stack.Screen name={routes.FORGOTPASSWORD} component={ForgotPassword} />
+    <Stack.Screen name={"MapView"} component={MapViewScreen}/>
+    <Stack.Screen name={"Drawer"} component={Drawer}/>
   </Stack.Navigator>
 );
 

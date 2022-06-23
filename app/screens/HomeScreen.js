@@ -46,8 +46,8 @@ import {colors} from '../theme';
 const HomeScreen = () => {
   const navigation = useNavigation();
 
-  const handleNavigation = route => {
-    navigation.navigate(route);
+  const handleNavigation = () => {
+    navigation.navigate("MapView");
   }; 
   return (
     <Screen>
@@ -65,7 +65,7 @@ const HomeScreen = () => {
           </Typography> 
           <Block>
             <Typography size={22}  left style={styles.typo}
-              onPress={() => handelMap()}>
+              onPress={() => handleNavigation()}>
               Start Trip
             </Typography>
           </Block>

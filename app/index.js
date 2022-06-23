@@ -9,7 +9,8 @@ const Index = () => {
 
   return (
     <NavigationContainer theme={NavigationTheme}>
-      {authStatus ? <DrawerNavigator /> : <Authnavigator />}
+      {/* {authStatus ? <DrawerNavigator /> : <Authnavigator />} */}
+      <Authnavigator/>
     </NavigationContainer>
   );
 };
