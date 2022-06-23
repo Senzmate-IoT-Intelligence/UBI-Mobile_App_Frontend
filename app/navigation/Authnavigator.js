@@ -8,9 +8,11 @@ import SignUpScreen from '../screens/SignUpScreen';
 import KeyVerifyScreen from '../screens/KeyVerifyScreen';
 import ForgotPassword from '../screens/ForgotPassword';
 import routes from './routes';
+
 import PersonalInfoScreen from '../screens/PersonalInfoScreen';
 import HomeScreen from '../screens/HomeScreen';
 import DrawerNavigator from '../navigation/DrawerNavigator';
+
 const Stack = createNativeStackNavigator();
 
 const Authnavigator = () => (

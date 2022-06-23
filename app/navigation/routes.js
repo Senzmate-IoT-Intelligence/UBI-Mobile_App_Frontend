@@ -23,5 +23,9 @@ export default Object.freeze({
   NOTIFICATIONS: 'Notification',
   HELP: 'Help',
   PRIVACYPOLICY: 'Privacy Policy',
-  DRAWERNAVIGATOR: 'Drawer Navigator'
+  PAYMENT: 'Payment',
+  MAKEPAYMENT: 'MakePayment',
+  PAYMENTOTP: 'PaymentOTP',
+  ERECEIPT:'EReceipt',
+  PAYMENTSUCCESS: 'PaymentSuccess'
 });
