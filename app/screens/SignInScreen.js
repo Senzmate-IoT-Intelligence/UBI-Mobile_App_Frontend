@@ -13,7 +13,7 @@ const SignInScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    
+    navigation.navigate("Drawer");
     console.log(email, password);
     // checking password and confirm password
     if (email == '' || password == '') {
@@ -28,7 +28,7 @@ const SignInScreen = () => {
         .then(function (response) {
           var output = response.data;
           //console.log(output.message);
-          navigation.navigate("Drawer");
+          // navigation.navigate("Drawer");
           ToastAndroid.show(output.message, ToastAndroid.SHORT);
         })
         .catch(function (error) {
