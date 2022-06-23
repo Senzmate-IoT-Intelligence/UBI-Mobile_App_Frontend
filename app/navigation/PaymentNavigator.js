@@ -13,8 +13,9 @@ const Stack = createNativeStackNavigator();
 const PaymentNavigator = () => {
   return (
     <Stack.Navigator mode="card" screenOptions={{ headerShown: false }} >
-        {/* <Stack.Screen name={routes.PAYMENTHOME} component={PaymentHistoryScreen} /> */}
+        
         <Stack.Screen name={routes.PAYMENT} component={Payment} />
+        <Stack.Screen name={routes.PAYMENTHOME} component={PaymentHistoryScreen} />
         <Stack.Screen name={routes.MAKEPAYMENT} component={MakePayment} />
         <Stack.Screen name={routes.PAYMENTOTP} component={PaymentOTP} />
         <Stack.Screen name={routes.ERECEIPT} component={EReceipt} />

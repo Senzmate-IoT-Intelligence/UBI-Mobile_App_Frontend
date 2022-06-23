@@ -13,6 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import routes from './routes';
 import {colors} from '../theme/colors';
 import SettingScreen from '../screens/SettingScreen';
+import PaymentHistoryNavigator from './PaymentHistoryNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -50,6 +51,16 @@ const DrawerNavigator = () => {
 
       <Drawer.Screen
         name={routes.PAYMENTHISTORY}
+        component={PaymentHistoryNavigator}
+        options={{
+          drawerIcon: ({color, size}) => (
+            <FontAwesome5 name="cc-amazon-pay" size={size} color={color} />
+          ),
+        }}
+      />
+
+<Drawer.Screen
+        name={routes.PAYMENT}
         component={PaymentNavigator}
         options={{
           drawerIcon: ({color, size}) => (
@@ -57,6 +68,7 @@ const DrawerNavigator = () => {
           ),
         }}
       />
+
       <Drawer.Screen
         name={routes.TRIPHISTORY}
         component={TripNavigator}
