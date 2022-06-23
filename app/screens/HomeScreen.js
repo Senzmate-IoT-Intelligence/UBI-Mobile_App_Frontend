@@ -8,7 +8,7 @@ const HomeScreen = () => {
   return (
     <Screen>
       <StatusBar backgroundColor={colors.white} barStyle="light-content" />
-      <Header title="Home" header />
+      <Header title="Home" header back/>
       <Block flex={1} style={styles.container}>
         <Typography>
           Home

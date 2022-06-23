@@ -30,6 +30,7 @@ const SignInScreen = () => {
           var output = response.data;
           //console.log(output.message);
           ToastAndroid.show(output.message, ToastAndroid.SHORT);
+          navigation.navigate(routes.HOME);
         })
         .catch(function (error) {
           console.log(error);
