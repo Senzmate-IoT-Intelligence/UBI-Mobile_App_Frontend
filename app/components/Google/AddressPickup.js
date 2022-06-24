@@ -5,16 +5,23 @@ import { GOOGLE_MAPS_APIKEY } from '../../constant/GoogleKey';
 
 
 const AddressPickup = ({
-    placeholderText
+    placeholderText,
+    fetchAddress
 }) => {
+
+    onPressAddress = (data, details) =>{
+        console.log("details===>>>", details)
+        const lat = details.geometry.location.lat
+        const lng = details.geometry.location.lng
+        fetchAddress(lat, lng)
+    }
+
     return (
       <View style={styles.container}>
             <GooglePlacesAutocomplete
                 placeholder={placeholderText}
-                onPress={(data, details = null) => {
-                // 'details' is provided when fetchDetails = true
-                console.log(data, details);
-                }}
+                onPress={onPressAddress}
+                fetchDetails={true}
                 query={{
                 key: GOOGLE_MAPS_APIKEY,
                 language: 'en',

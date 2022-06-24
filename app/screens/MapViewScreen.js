@@ -39,7 +39,11 @@ const Mapview = ({navigation}) =>{
         navigation.navigate("choselocation");
       }; */
       const onPressLocation = () =>{
-        navigation.navigate("choselocation")
+        navigation.navigate("choselocation", {getCordinates: fetchvaluefromChoseLocation })
+      } 
+
+      const fetchvaluefromChoseLocation = (data) =>{
+        console.log("data==>>>>", data)
       }
 
 
