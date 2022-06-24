@@ -26,7 +26,8 @@ export default Object.freeze({
   Navigation: "TripNavigation",
   NavigationCa: "Cancel",
   NavigationOk: "Proceed",
-  MapView: "MapView"
+  MapView: "MapView",
+  ChoseLocation: "ChoseLocation"
 
 
 });

@@ -49,6 +49,9 @@ const HomeScreen = () => {
   const handleNavigation = () => {
     navigation.navigate("MapView");
   }; 
+  const handleNavigation1 = () => {
+    navigation.navigate("choselocation");
+  }; 
   return (
     <Screen>
       <StatusBar backgroundColor={colors.secondary} barStyle="light-content" />
@@ -60,9 +63,12 @@ const HomeScreen = () => {
           <Typography size={24} bold left>
             Chose your destination
           </Typography> 
-          <Typography size={22} left style={styles.typo} >
-            Default Location
-          </Typography> 
+          <Block>
+            <Typography size={22}  left style={styles.typo}
+              onPress={() => handleNavigation1()}>
+              Chose your location
+            </Typography>
+          </Block> 
           <Block>
             <Typography size={22}  left style={styles.typo}
               onPress={() => handleNavigation()}>

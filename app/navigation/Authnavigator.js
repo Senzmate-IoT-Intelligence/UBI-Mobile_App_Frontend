@@ -11,6 +11,7 @@ import MapViewScreen from '../screens/MapViewScreen';
 import routes from './routes';
 import PersonalInfoScreen from '../screens/PersonalInfoScreen';
 import Drawer from '../navigation/DrawerNavigator';
+import ChoseLocation from '../screens/ChoseLocation';
 
 const Stack = createNativeStackNavigator();
 
@@ -26,6 +27,7 @@ const Authnavigator = () => (
     <Stack.Screen name={routes.FORGOTPASSWORD} component={ForgotPassword} />
     <Stack.Screen name={"MapView"} component={MapViewScreen}/>
     <Stack.Screen name={"Drawer"} component={Drawer}/>
+    <Stack.Screen name={"choselocation"} component={ChoseLocation}/>
   </Stack.Navigator>
 );
 
