@@ -11,7 +11,7 @@
       android:allowBackup="false"
       android:theme="@style/AppTheme">
            <meta-data
-     android:name="com.google.android.geo.AIzaSyAN_5pChGjDpjJsVz7XeJP4VKLQKSapYh4"
+     android:name="com.google.android.geo.API_KEY"
      android:value="AIzaSyAN_5pChGjDpjJsVz7XeJP4VKLQKSapYh4"/> <!-- Your key goes here. -->
  
    <!-- You will also only need to add this uses-library tag -->
