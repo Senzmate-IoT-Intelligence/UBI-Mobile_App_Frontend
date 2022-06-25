@@ -2,7 +2,7 @@ import React, { Component,useState, useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import MapView, { Marker } from 'react-native-maps';
 import MapViewDirections from 'react-native-maps-directions';
-import {StyleSheet, StatusBar,View,Text} from 'react-native';
+import {StyleSheet, StatusBar,View,Text,TouchableOpacity} from 'react-native';
 import { GOOGLE_MAPS_APIKEY } from '../constant/GoogleKey';
 import imagePath from '../constant/imagePath';
 import {Screen, Block, Typography, Button, TextBox} from '../components/index';
@@ -10,7 +10,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import {colors} from '../theme';
 import routes from '../navigation/routes';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+//import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const Mapview = ({navigation}) =>{ 
     
@@ -43,17 +43,31 @@ const Mapview = ({navigation}) =>{
       } 
 
       const fetchvaluefromChoseLocation = (data) =>{
+        setState({
+            pickupCords: {
+                ...state.pickupCords,
+                latitude: data.pickupCords.latitude,
+                longitude: data.pickupCords.longitude,
+            },
+            droplocationCords: {
+                ...state.droplocationCords,
+                latitude: data.droplocationCords.latitude,
+                longitude: data.droplocationCords.longitude 
+            }
+        })
         console.log("data==>>>>", data)
       }
 
 
     return (
     <View style={{flex:1,}}>
-<View style={{flex:1,}}>
+<View style={{flex:1}}>
        <MapView
             ref={mapRef}
             style={StyleSheet.absoluteFill}
             initialRegion={pickupCords}
+            region={pickupCords}  //check is it needed in the codding
+           
         >
          <Marker coordinate={pickupCords}
             image={imagePath.icCurLoc3}
@@ -70,7 +84,8 @@ const Mapview = ({navigation}) =>{
             strokeColor="red"
             optimizeWaypoints={true}
             onReady={result => {
-                mapRef.current.fitToCoordinates(result.coordinate,{
+                console.log("RESULT ",JSON.stringify(result)),
+                mapRef.current.fitToCoordinates(result.coordinates,{
                     edgePadding:{
                         right: 30,
                         bottom: 100,
@@ -87,7 +102,9 @@ const Mapview = ({navigation}) =>{
             gradient
             shadow
             style={styles.inputstyle}
-            onPress={onPressLocation}>
+            onPress={onPressLocation}
+            // onPress={()=>console.log("hid")}
+            >
                 <Text>Chose Destination</Text>
             </TouchableOpacity>
 
