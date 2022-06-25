@@ -13,12 +13,15 @@ import PersonalInfoScreen from '../screens/PersonalInfoScreen';
 import Drawer from '../navigation/DrawerNavigator';
 import ChoseLocation from '../screens/ChoseLocation';
 
-import FlashMessage  from "react-native-flash-message";
+
 import { NavigationContainer } from '@react-navigation/native';
+import FlashMessage  from "react-native-flash-message";
 
 const Stack = createNativeStackNavigator();
 
+
 const Authnavigator = () => (
+  <>
   <Stack.Navigator
     mode="modal"
     initialRouteName="Welcome"
@@ -32,10 +35,13 @@ const Authnavigator = () => (
     <Stack.Screen name={"Drawer"} component={Drawer}/>
     <Stack.Screen name={"choselocation"} component={ChoseLocation}/>
   </Stack.Navigator>
- /*  <FlashMessage
-  position="top"
-  >
-  </FlashMessage> */
+  
+    <FlashMessage
+    position="top"
+    >
+    </FlashMessage> 
+    </>
+
 );
 
 export default Authnavigator;

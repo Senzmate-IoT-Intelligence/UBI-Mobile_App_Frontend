@@ -25,6 +25,7 @@ import {
   LearnMoreLinks,
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
+//import FlashMessage  from "react-native-flash-message";
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -60,6 +61,10 @@ const App: () => Node = () => {
   };
 
   return (
+  /*   <FlashMessage
+     position="top"
+      >
+  </FlashMessage>  */
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView

@@ -13,14 +13,13 @@ const ChoseLocation = (props) =>{
 
     const navigation = useNavigation()
 
-    const [state, setState] = useState ({})
-    const {pickupCords, droplocationCords } = state
+    const [state, setState] = useState ({
+        droplocationCords: {},
+    })
+
+    const { droplocationCords } = state
 
     const checkVaild = () =>{
-        if (Object.keys(pickupCords).length ===0) {
-            showError('Please enter your Pickup location')
-            return false
-        }
 
         if (Object.keys(droplocationCords).length ===0) {
             showError('Please enter your Destination')
@@ -35,7 +34,6 @@ const ChoseLocation = (props) =>{
 
         if (isValid) {
             props.route.params.getCordinates({
-            pickupCords,
             droplocationCords
             })
             showSucess("cordination enterd successful")
@@ -47,9 +45,9 @@ const ChoseLocation = (props) =>{
     
     
 
-    const fetchAddressCordinates = (lat, lng) =>{
-        /* console.log("latitude", lat)
-        console.log("longitude", lng) */
+   /*  const fetchAddressCordinates = (lat, lng) =>{
+         console.log("latitude", lat)
+        console.log("longitude", lng) 
             setState({
             ...state,  pickupCords:{
                 latitude: lat,
@@ -57,7 +55,7 @@ const ChoseLocation = (props) =>{
             }
         })
     }
-
+ */
     const fetchDestinationCordinates = (lat, lng) =>{
         setState({
             ...state,  droplocationCords:{
@@ -75,17 +73,14 @@ const ChoseLocation = (props) =>{
    
 
     return(
-        <View style={styles.containerCH}>
-            {/* keyboardShouldPersistTaps="handled"
-            style={{backgroundColor: 'white', flex: 1, padding: 24}} */}
-            
+        <View  style={styles.containerCH} >
+           {/*  <View
+             keyboardShouldPersistTaps="handled"
+            style={{backgroundColor: 'white', flex: 1, padding: 24}}> */}
+             
+                <View style={{flex:1,marginBottom: 20}}/>
                 <AddressPickup
-                placeholderText="Enter Starting Destination"
-                fetchAddress={fetchAddressCordinates}
-                />
-                {/* <View style={{flex:1,marginBottom: 20}}/> */}
-
-                <AddressPickup
+                
                 placeholderText="Enter END Destination"
                 fetchAddress={fetchDestinationCordinates}
                 />
@@ -93,9 +88,10 @@ const ChoseLocation = (props) =>{
 
                 <CustomButton
                 buttonText="Submit"
-                buttonStyle={{marginTop: 30}}
+                buttonStyle={{marginTop: 40}}
                 onPress={onDone}
                 />
+            {/* </View> */}
         </View>
 
     );
