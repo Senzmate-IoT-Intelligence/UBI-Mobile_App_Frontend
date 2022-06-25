@@ -10,7 +10,7 @@ import {
   TouchableOpacity,
   Dimensions,
   Platform,
-  Image
+  Image,
 } from 'react-native';
 import {GOOGLE_MAPS_APIKEY} from '../constant/GoogleKey';
 import imagePath from '../constant/imagePath';
@@ -26,7 +26,7 @@ import {
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
-const LATITUDE_DELTA = 0.9222;
+const LATITUDE_DELTA = 0.04;
 const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 
 const Mapview = ({navigation}) => {
@@ -46,19 +46,27 @@ const Mapview = ({navigation}) => {
       latitudeDelta: LATITUDE_DELTA,
       longitudeDelta: LONGITUDE_DELTA,
     }),
+    time: 0,
+    distance: 0,
   });
 
-  const {CurrentLocationCords, droplocationCords, isLoading, coordinate} =
-    state;
+  const {
+    CurrentLocationCords,
+    droplocationCords,
+    isLoading,
+    coordinate,
+    time,
+    distance,
+  } = state;
 
   useEffect(() => {
     getLiveLocation();
   }, []);
 
   const getLiveLocation = async () => {
-    const locationPermissionDenied = await locationPermission()
+    const locationPermissionDenied = await locationPermission();
     if (locationPermissionDenied) {
-      const {latitude, longitude} = await getCurrentLocation()
+      const {latitude, longitude} = await getCurrentLocation();
       animate(latitude, longitude);
       setState({
         ...state,
@@ -105,26 +113,36 @@ const Mapview = ({navigation}) => {
   const animate = (latitude, longitude) => {
     const newCoordinate = {latitude, longitude};
     if (Platform.OS == 'android') {
-        if (markerRef.current) {
-            markerRef.current.animateMarkerToCoordinate(newCoordinate, 7000);   
-        }
+      if (markerRef.current) {
+        markerRef.current.animateMarkerToCoordinate(newCoordinate, 7000);
+      }
+    } else {
+      coordinate.timing(newCoordinate).start();
     }
-    else{
-        coordinate.timing(newCoordinate).start()
-    }
-  }
+  };
 
   const onCenter = () => {
     mapRef.current.animateToRegion({
-        latitude: CurrentLocationCords.latitude,
-        longitude: CurrentLocationCords.longitude,
-        latitudeDelta: LATITUDE_DELTA,
-        longitudeDelta: LONGITUDE_DELTA
-    })
+      latitude: CurrentLocationCords.latitude,
+      longitude: CurrentLocationCords.longitude,
+      latitudeDelta: LATITUDE_DELTA,
+      longitudeDelta: LONGITUDE_DELTA,
+    });
+  };
+
+  const fetchTime = (d, t) =>{
+    //d -distance, t -time
+    setState(state =>({...state, distance: d, time: t}))
+
   }
 
   return (
     <View style={{flex: 1}}>
+      {distance !== 0 && time !== 0 && (<View style={{alignItems: 'center', marginVertical: 16}}>
+          <Text>Time Left: {time}</Text>
+          <Text>Distance Left: {distance}</Text>
+        </View>
+      )}
       <View style={{flex: 1}}>
         <MapView
           ref={mapRef}
@@ -156,6 +174,7 @@ const Mapview = ({navigation}) => {
               optimizeWaypoints={true}
               onReady={result => {
                 console.log('RESULT ', JSON.stringify(result)),
+                fetchTime(result.distance, result.duration),
                   mapRef.current.fitToCoordinates(result.coordinates, {
                     edgePadding: {
                       right: 30,
@@ -171,15 +190,14 @@ const Mapview = ({navigation}) => {
             />
           )}
         </MapView>
-        <TouchableOpacity 
-        style={{
-            position:'absolute',
+        <TouchableOpacity
+          style={{
+            position: 'absolute',
             bottom: 0,
-            right:0
-        }}
-        onPress={onCenter}
-        >
-            <Image source={imagePath.inGreenIndi1} />
+            right: 0,
+          }}
+          onPress={onCenter}>
+          <Image source={imagePath.inGreenIndi1} />
         </TouchableOpacity>
       </View>
       <View style={styles.bottomCa}>

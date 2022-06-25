@@ -81,7 +81,7 @@ const ChoseLocation = (props) =>{
                 <View style={{flex:1,marginBottom: 20}}/>
                 <AddressPickup
                 
-                placeholderText="Enter END Destination"
+                placeholderText="Enter Destination"
                 fetchAddress={fetchDestinationCordinates}
                 />
 
