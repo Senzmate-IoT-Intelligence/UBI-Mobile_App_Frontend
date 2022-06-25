@@ -7,6 +7,7 @@ import AddressPickup from "../components/Google/AddressPickup";
 import CustomButton from "../components/Google/CustomButton";
 // import { setGestureState } from "react-native-reanimated/lib/reanimated2/NativeMethods";
 import Mapview from './MapViewScreen';
+import { showError, showSucess } from '../components/Google/HelperFunction';
 
 const ChoseLocation = (props) =>{
 
@@ -15,13 +16,33 @@ const ChoseLocation = (props) =>{
     const [state, setState] = useState ({})
     const {pickupCords, droplocationCords } = state
 
+    const checkVaild = () =>{
+        if (Object.keys(pickupCords).length ===0) {
+            showError('Please enter your Pickup location')
+            return false
+        }
+
+        if (Object.keys(droplocationCords).length ===0) {
+            showError('Please enter your Destination')
+            return false
+        }
+        return true
+    }
 
     const onDone = () =>{
-        props.route.params.getCordinates({
+        const isValid = checkVaild()
+        console.log("Is valid", isValid)
+
+        if (isValid) {
+            props.route.params.getCordinates({
             pickupCords,
             droplocationCords
-        })
-        navigation.goBack()
+            })
+            showSucess("cordination enterd successful")
+            navigation.goBack() 
+            
+        }
+
     }
     
     
@@ -55,15 +76,14 @@ const ChoseLocation = (props) =>{
 
     return(
         <View style={styles.containerCH}>
-            {/* <ScrollView
-            keyboardShouldPersistTaps="handled"
-            style={{backgroundColor: 'white', flex: 1, padding: 24}}
-            > */}
+            {/* keyboardShouldPersistTaps="handled"
+            style={{backgroundColor: 'white', flex: 1, padding: 24}} */}
+            
                 <AddressPickup
                 placeholderText="Enter Starting Destination"
                 fetchAddress={fetchAddressCordinates}
                 />
-                <View style={{marginBottom: 20}}/>
+                {/* <View style={{flex:1,marginBottom: 20}}/> */}
 
                 <AddressPickup
                 placeholderText="Enter END Destination"
@@ -76,7 +96,6 @@ const ChoseLocation = (props) =>{
                 buttonStyle={{marginTop: 30}}
                 onPress={onDone}
                 />
-            {/* </ScrollView> */}
         </View>
 
     );

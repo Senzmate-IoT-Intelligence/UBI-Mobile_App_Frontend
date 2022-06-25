@@ -14,7 +14,8 @@ import routes from '../navigation/routes';
 
 const Mapview = ({navigation}) =>{ 
     
-
+    const mapRef = useRef()
+    
     const [state, setState] = useState({
         pickupCords:{
             latitude:  6.8015,
@@ -27,11 +28,10 @@ const Mapview = ({navigation}) =>{
             latitude: 6.9326,
             longitude: 79.8553,
             latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421,
+            longitudeDelta: 0.0421
         }
     })
 
-    const mapRef = useRef()
 
     const {pickupCords, droplocationCords } = state
 
@@ -45,12 +45,12 @@ const Mapview = ({navigation}) =>{
       const fetchvaluefromChoseLocation = (data) =>{
         setState({
             pickupCords: {
-                ...state.pickupCords,
+                // ...state.pickupCords,
                 latitude: data.pickupCords.latitude,
                 longitude: data.pickupCords.longitude,
             },
             droplocationCords: {
-                ...state.droplocationCords,
+                // ...state.droplocationCords,
                 latitude: data.droplocationCords.latitude,
                 longitude: data.droplocationCords.longitude 
             }
@@ -66,7 +66,7 @@ const Mapview = ({navigation}) =>{
             ref={mapRef}
             style={StyleSheet.absoluteFill}
             initialRegion={pickupCords}
-            region={pickupCords}  //check is it needed in the codding
+            // region={pickupCords}  //check is it needed in the codding
            
         >
          <Marker coordinate={pickupCords}
