@@ -63,12 +63,12 @@ const HomeScreen = () => {
           <Typography size={24} bold left>
             Chose your destination
           </Typography> 
-          <Block>
+           <Block>
             <Typography size={22}  left style={styles.typo}
               onPress={() => handleNavigation1()}>
               Chose your location
             </Typography>
-          </Block> 
+          </Block>  
           <Block>
             <Typography size={22}  left style={styles.typo}
               onPress={() => handleNavigation()}>
@@ -108,9 +108,9 @@ const HomeScreen = () => {
         <Button
               primary
               shadow
-              onPress={() =>
+               onPress={() =>
                 handleSignUp(email, password, confirmPassword, nic, phone)
-              }>
+              }> 
               <Typography center white bold size={15}>
                 Met an Accident
               </Typography>

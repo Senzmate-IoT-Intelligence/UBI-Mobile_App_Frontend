@@ -74,11 +74,10 @@ const ChoseLocation = (props) =>{
 
     return(
         <View  style={styles.containerCH} >
-           {/*  <View
-             keyboardShouldPersistTaps="handled"
-            style={{backgroundColor: 'white', flex: 1, padding: 24}}> */}
+           <View
+            style={{backgroundColor: '#08d4c4', flex: 1, padding:24}}> 
              
-                <View style={{flex:1,marginBottom: 20}}/>
+                <View style={{flex:1}}/>
                 <AddressPickup
                 
                 placeholderText="Enter Destination"
@@ -88,10 +87,15 @@ const ChoseLocation = (props) =>{
 
                 <CustomButton
                 buttonText="Submit"
-                buttonStyle={{marginTop: 40}}
+                buttonStyle={{backgroundColor: 'white', marginBottom:10}}
                 onPress={onDone}
                 />
-            {/* </View> */}
+                <CustomButton
+                buttonText="Cancel Trip"
+                buttonStyle={{backgroundColor: 'white', marginBottom:10}}
+                onPress={onDone}
+                />
+            </View>
         </View>
 
     );
@@ -101,7 +105,7 @@ const styles = StyleSheet.create({
 
     containerCH: {
         flex: 1,
-        alignContent:"space-around"
+        
 
-    },
+    }
 });

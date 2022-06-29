@@ -23,6 +23,7 @@ import {
   locationPermission,
   getCurrentLocation,
 } from '../components/Google/HelperFunction';
+import axios from 'axios';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
@@ -110,6 +111,21 @@ const Mapview = ({navigation}) => {
     console.log('data==>>>>', data);
   };
 
+  useEffect(() => {
+    if (droplocationCords.latitude && droplocationCords.longitude) {
+      // debugger;
+      // save to database
+      console.log('test');
+      axios.post('http://192.168.43.73:5000/api/tripdetails/create', {
+        Tripid: 3,
+        startingpoint: CurrentLocationCords.latitude,
+        destination: droplocationCords.latitude,
+        date: new Date(),
+        distance: distance,
+      });
+    }
+  }, [droplocationCords]);
+
   const animate = (latitude, longitude) => {
     const newCoordinate = {latitude, longitude};
     if (Platform.OS == 'android') {
@@ -130,15 +146,15 @@ const Mapview = ({navigation}) => {
     });
   };
 
-  const fetchTime = (d, t) =>{
+  const fetchTime = (d, t) => {
     //d -distance, t -time
-    setState(state =>({...state, distance: d, time: t}))
-
-  }
+    setState(state => ({...state, distance: d, time: t}));
+  };
 
   return (
     <View style={{flex: 1}}>
-      {distance !== 0 && time !== 0 && (<View style={{alignItems: 'center', marginVertical: 16}}>
+      {distance !== 0 && time !== 0 && (
+        <View style={{alignItems: 'center', marginVertical: 16}}>
           <Text>Time Left: {time}</Text>
           <Text>Distance Left: {distance}</Text>
         </View>
@@ -174,7 +190,7 @@ const Mapview = ({navigation}) => {
               optimizeWaypoints={true}
               onReady={result => {
                 console.log('RESULT ', JSON.stringify(result)),
-                fetchTime(result.distance, result.duration),
+                  fetchTime(result.distance, result.duration),
                   mapRef.current.fitToCoordinates(result.coordinates, {
                     edgePadding: {
                       right: 30,
