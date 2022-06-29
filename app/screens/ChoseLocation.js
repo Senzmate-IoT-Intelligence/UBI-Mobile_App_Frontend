@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/native';
-import React, { Component,useState, } from 'react';
+import React, { Component,useState } from 'react';
 import {View, Text, StyleSheet, ScrollView} from 'react-native';
 import { GOOGLE_MAPS_APIKEY } from '../constant/GoogleKey';
 //Screens are beloow
@@ -14,7 +14,7 @@ const ChoseLocation = (props) =>{
     const navigation = useNavigation()
 
     const [state, setState] = useState ({
-        droplocationCords: {},
+        droplocationCords: {}
     })
 
     const { droplocationCords } = state
@@ -56,11 +56,12 @@ const ChoseLocation = (props) =>{
         })
     }
  */
-    const fetchDestinationCordinates = (lat, lng) =>{
+    const fetchDestinationCordinates = (lat, lng, cityText) =>{
         setState({
             ...state,  droplocationCords:{
                 latitude: lat,
                 longitude: lng, 
+                Destination: cityText
             }
         })
     }
@@ -104,7 +105,7 @@ export default ChoseLocation;
 const styles = StyleSheet.create({
 
     containerCH: {
-        flex: 1,
+        flex: 1
         
 
     }

@@ -106,25 +106,38 @@ const Mapview = ({navigation}) => {
         // ...state.droplocationCords,
         latitude: data.droplocationCords.latitude,
         longitude: data.droplocationCords.longitude,
+        Destination: data.droplocationCords.Destination,
       },
     });
     console.log('data==>>>>', data);
   };
 
-  useEffect(() => {
-    if (droplocationCords.latitude && droplocationCords.longitude) {
-      // debugger;
-      // save to database
-      console.log('test');
-      axios.post('http://192.168.43.73:5000/api/tripdetails/create', {
-        Tripid: 3,
-        startingpoint: CurrentLocationCords.latitude,
-        destination: droplocationCords.latitude,
-        date: new Date(),
-        distance: distance,
-      });
-    }
-  }, [droplocationCords]);
+  // useEffect(() => {
+  //   if (
+  //     droplocationCords.latitude &&
+  //     droplocationCords.longitude
+  //   ) {
+  //     // debugger;
+  //     // save to database
+  //     console.log('test');
+  //     axios.post('http://192.168.8.146:5000/api/tripdetails/create', {
+  //       Tripid: 5,
+  //       startingpoint: CurrentLocationCords.latitude,
+  //       destination: droplocationCords.Destination,
+  //       date: new Date(),
+  //       distance: distance
+  //     });
+  //   }
+  // }, [droplocationCords]);
+
+  const createTrip = (dist) => {
+    axios.post('http://192.168.8.146:5000/api/tripdetails/create', {
+      startingpoint: CurrentLocationCords.latitude,
+      destination: droplocationCords.Destination,
+      date: new Date(),
+      distance: dist
+    });
+  };
 
   const animate = (latitude, longitude) => {
     const newCoordinate = {latitude, longitude};
@@ -147,8 +160,9 @@ const Mapview = ({navigation}) => {
   };
 
   const fetchTime = (d, t) => {
+    console.log(d, t);
     //d -distance, t -time
-    setState(state => ({...state, distance: d, time: t}));
+    setState({...state, distance: d, time: t});
   };
 
   return (
@@ -189,8 +203,9 @@ const Mapview = ({navigation}) => {
               strokeColor="red"
               optimizeWaypoints={true}
               onReady={result => {
-                console.log('RESULT ', JSON.stringify(result)),
-                  fetchTime(result.distance, result.duration),
+                // console.log('RESULT ', JSON.stringify(result)),
+                fetchTime(result.distance, result.duration),
+                  createTrip(result.distance),
                   mapRef.current.fitToCoordinates(result.coordinates, {
                     edgePadding: {
                       right: 30,
