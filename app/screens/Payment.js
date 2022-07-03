@@ -1,20 +1,90 @@
-import {StyleSheet, StatusBar, ScrollView} from 'react-native';
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Screen, Block, Typography, Button, TextBox} from '../components/index';
+import { StyleSheet, StatusBar, ScrollView, Alert } from 'react-native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Screen, Block, Typography, Button, TextBox } from '../components/index';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import routes from '../navigation/routes';
-import {colors} from '../theme';
+import { colors } from '../theme';
+import { useStripe } from '@stripe/stripe-react-native';
+import axios from 'axios';
 
 const Payment = () => {
   const navigation = useNavigation();
+  const [distance, setDistance] = useState("");
+  const [name, setName] = useState("");
+  const [amount, setAmount] = useState("");
+  const stripe = useStripe();
 
- 
+  const makePayment = async () => {
+    //   try {
+    //     const finalAmount = parseInt(amount);
+    //     const res = await axios.post("http://192.168.1.3:8000/api/user/stripePayment", {
+    //       amount: finalAmount, name: name
+    //     })
+    //     const clientSecret=  res.data.clientSecret;
+    //      console.log(clientSecret);
+    //     const initSheet = await stripe.initPaymentSheet({
+    //       paymentIntentClientSecret: clientSecret,
+    //       merchantDisplayName: name
+    //     });
+    //     if (initSheet.error) {
+    //       console.log(initSheet.error);
+    //       return Alert.alert(initSheet.error.message);
+    //     }
+    //     const presentSheet = await stripe.presentPaymentSheet({
+    //  clientSecret
+    //     });
 
-  const makePayment = () => {
-   
-    navigation.navigate(routes.MAKEPAYMENT);
+    //     if (presentSheet.error) {
+    //       console.log(presentSheet.error);
+    //       return Alert.alert(presentSheet.error.message);
+    //     }
+    //     console.log("Donated successfully! Thank you for the donation.");
+    //     Alert.alert("Donated successfully! Thank you for the donation.");
+    //   } catch (err) {
+    //     console.log(err);
+    //     Alert.alert("Payment failed!");
+
+    //   }
+
+    try {
+      const finalAmount = parseInt(amount);
+      if (finalAmount < 1) return Alert.alert("You cannot donate below 1 LKR");
+
+      axios
+        .post("http://192.168.1.3:8000/api/user/stripePayment", { amount: finalAmount, name: name })
+        .then(async (response) => {
+          let Data = response.data
+          Alert.alert(Data.message)
+
+          const initSheet = await stripe.initPaymentSheet({
+            paymentIntentClientSecret: Data.clientSecret,
+            merchantDisplayName: name
+          });
+          if (initSheet.error) {
+            console.error(initSheet.error);
+            return Alert.alert(initSheet.error.message);
+          }
+          const presentSheet = await stripe.presentPaymentSheet({
+            clientSecret: Data.clientSecret,
+          });
+          if (presentSheet.error) {
+            console.error(presentSheet.error);
+            return Alert.alert(presentSheet.error.message);
+          }
+          console.log("Paid");
+          Alert.alert("Payment successful! Thank you for the payment.");
+        })
+        .catch((error) => {
+          console.log(error);
+          Alert.alert(error.toString())
+        })
+    } catch (err) {
+      console.error(err);
+      Alert.alert("Payment failed!");
+    }
+
   };
 
   return (
@@ -36,17 +106,20 @@ const Payment = () => {
             <Typography black style={styles.label}>
               Distance in Km
             </Typography>
-            <TextBox placeholder="Your username" />
+            <TextBox placeholder="Your Distance" onChangeText={(e) => setDistance(e)} />
             <Typography black style={styles.label}>
               Payment
             </Typography>
-            <TextBox placeholder="Your email" />
-
+            <TextBox placeholder="Your Amount" onChangeText={(e) => setAmount(e)} />
+            <Typography black style={styles.label}>
+              Name
+            </Typography>
+            <TextBox placeholder="Your Name" onChangeText={(e) => setName(e)} />
             <Block flex={1} center row style={styles.buttonsBlock}>
               <Button
                 gradient
                 shadow
-                onPress={() => makePayment()}
+                onPress={makePayment}
                 style={styles.button}>
                 <Typography center white bold>
                   Pay Now

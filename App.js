@@ -7,7 +7,7 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
+import {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -26,9 +26,12 @@ import {
   ReloadInstructions
 } from 'react-native/Libraries/NewAppScreen';
 
+import { StripeProvider } from "@stripe/stripe-react-native";
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
+   
     <View style={styles.sectionContainer}>
       <Text
         style={[
@@ -49,6 +52,7 @@ const Section = ({children, title}): Node => {
         {children}
       </Text>
     </View>
+
   );
 };
 
@@ -60,6 +64,7 @@ const App: () => Node = () => {
   };
 
   return (
+    
     <SafeAreaView style={backgroundStyle}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
       <ScrollView
@@ -87,6 +92,7 @@ const App: () => Node = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
+    
   );
 };
 

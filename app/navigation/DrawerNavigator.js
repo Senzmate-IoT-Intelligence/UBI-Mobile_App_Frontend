@@ -14,11 +14,12 @@ import routes from './routes';
 import {colors} from '../theme/colors';
 import SettingScreen from '../screens/SettingScreen';
 import PaymentHistoryNavigator from './PaymentHistoryNavigator';
-
 const Drawer = createDrawerNavigator();
+import { StripeProvider } from '@stripe/stripe-react-native';
 
 const DrawerNavigator = () => {
   return (
+    <StripeProvider publishableKey="pk_test_51LA5tHSFtRtwCUyrnMJ2pFWsx14Sw7qvFBx7WlW86mLWfwV2vKotkDmh1DWHCt02WNgpx953OzHNRIWrxtCil3Ii00uq3uUUFm">
     <Drawer.Navigator
       initialRouteName="home"
       screenOptions={({navigation}) => ({
@@ -58,7 +59,7 @@ const DrawerNavigator = () => {
           ),
         }}
       />
-
+ 
 <Drawer.Screen
         name={routes.PAYMENT}
         component={PaymentNavigator}
@@ -68,6 +69,7 @@ const DrawerNavigator = () => {
           ),
         }}
       />
+
 
       <Drawer.Screen
         name={routes.TRIPHISTORY}
@@ -112,6 +114,7 @@ const DrawerNavigator = () => {
         }}
       />
     </Drawer.Navigator>
+    </StripeProvider>
   );
 };
 

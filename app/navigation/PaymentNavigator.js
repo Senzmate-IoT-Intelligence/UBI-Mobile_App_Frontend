@@ -7,14 +7,16 @@ import EReceipt from '../screens/EReceipt';
 import PaymentSuccess from '../screens/PaymentSuccess';
 import Payment from '../screens/Payment';
 import MakePayment from '../screens/MakePayment';
-
+import { StripeProvider } from '@stripe/stripe-react-native';
 const Stack = createNativeStackNavigator();
 
 const PaymentNavigator = () => {
   return (
+    
     <Stack.Navigator mode="card" screenOptions={{ headerShown: false }} >
-        
+       
         <Stack.Screen name={routes.PAYMENT} component={Payment} />
+  
         <Stack.Screen name={routes.PAYMENTHOME} component={PaymentHistoryScreen} />
         <Stack.Screen name={routes.MAKEPAYMENT} component={MakePayment} />
         <Stack.Screen name={routes.PAYMENTOTP} component={PaymentOTP} />
