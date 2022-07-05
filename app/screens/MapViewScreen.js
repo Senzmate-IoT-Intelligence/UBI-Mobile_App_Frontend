@@ -131,7 +131,7 @@ const Mapview = ({navigation}) => {
   // }, [droplocationCords]);
 
   const createTrip = (dist) => {
-    axios.post('http:// 192.168.8.146:5000/api/tripdetails/create', {
+    axios.post('http://192.168.43.73:5000/api/tripdetails/create', {
       startingpoint: 'Katubadda',
       destination: droplocationCords.Destination,
       date: new Date(),
