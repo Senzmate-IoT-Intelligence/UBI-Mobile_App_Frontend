@@ -139,6 +139,12 @@ const Mapview = ({navigation}) => {
     });
   };
 
+  const InformAccident = () =>{
+    axios.post('',{
+
+    })
+  }
+
   const animate = (latitude, longitude) => {
     const newCoordinate = {latitude, longitude};
     if (Platform.OS == 'android') {
@@ -241,6 +247,16 @@ const Mapview = ({navigation}) => {
         >
           <Text>Chose Destination</Text>
         </TouchableOpacity>
+        <Button
+              primary
+              shadow
+               onPress={() =>
+                handleSignUp()
+              }> 
+              <Typography center white bold size={15}>
+                Met an Accident
+              </Typography> 
+            </Button>
       </View>
     </View>
   );
