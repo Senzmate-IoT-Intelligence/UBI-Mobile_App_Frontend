@@ -91,11 +91,11 @@ const ChoseLocation = (props) =>{
                 buttonStyle={{backgroundColor: 'white', marginBottom:10}}
                 onPress={onDone}
                 />
-                <CustomButton
+                {/* <CustomButton
                 buttonText="Cancel Trip"
                 buttonStyle={{backgroundColor: 'white', marginBottom:10}}
                 onPress={onDone}
-                />
+                /> */}
             </View>
         </View>
 

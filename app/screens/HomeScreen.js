@@ -60,8 +60,8 @@ const HomeScreen = () => {
           colors={[colors.secondary, colors.primary]}
           style={styles.linearBg}>
         <Animatable.View animation="fadeInUp" style={styles.animationBlock1}>
-          <Typography size={24} bold left>
-            Chose your destination
+          <Typography size={26} bold center>
+            Start Your Trip
           </Typography> 
            {/* <Block>
             <Typography size={22}  left style={styles.typo}
@@ -70,22 +70,28 @@ const HomeScreen = () => {
             </Typography>
           </Block>   */}
           <Block>
-            <Typography size={22}  left style={styles.typo}
+            <Typography size={24}  bold left style={styles.typo}
               onPress={() => handleNavigation()}>
-              Start Trip
+              Enter Destination  
+               
             </Typography>
+            <Typography size={18} left>
+                Sellect "Enter Destination" to sellect trip location
+              </Typography> 
+
           </Block>
         </Animatable.View>
 
         <Animatable.View animation="fadeInUpBig" style={styles.animationBlock2}>
-          <Typography size={24} bold left>
-            Cancel your trip?
+          <Typography size={26} bold center>
+            cancellation of the trip?
           </Typography>
-           <Typography size={20} left>
-            You won't be charged a cancellation fee
+           <Typography size={22} left>
+            You can cancel your trip before pressing submit button,
+            You won't be charged a cancellation fee.
           </Typography> 
           <Block flex={1} center row style={styles.buttonsBlock}>
-            <Button
+           {/*  <Button
               gradient
               shadow
               onPress={() => handleNavigation(routes.NavigationOk)}
@@ -93,8 +99,8 @@ const HomeScreen = () => {
               <Typography center white bold>
                 No
               </Typography>
-            </Button>
-            <Button
+            </Button> */}
+         {/*    <Button
               gradient
               shadow
               onPress={() => handleNavigation(routes.NavigationCa)}
@@ -102,10 +108,10 @@ const HomeScreen = () => {
               <Typography center white bold>
                 Yes,Cancel
               </Typography>
-            </Button>
+            </Button> */}
           </Block>
         </Animatable.View>
-        <Button
+      {/*   <Button
               primary
               shadow
                onPress={() =>
@@ -113,8 +119,8 @@ const HomeScreen = () => {
               }> 
               <Typography center white bold size={15}>
                 Met an Accident
-              </Typography>
-            </Button>
+              </Typography> 
+            </Button>*/}
       </LinearGradient>
     </Block>
   </Screen>
@@ -175,7 +181,8 @@ const styles = StyleSheet.create({
     flex: 0.47,
   },
   typo: {
-    marginTop: 10
+    marginTop: 20,
+    marginBottom: 10
   },
  /*  Starttrip: {
     flex: 1,

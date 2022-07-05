@@ -36,14 +36,14 @@ const Mapview = ({navigation}) => {
 
   const [state, setState] = useState({
     CurrentLocationCords: {
-      latitude: 6.8015,
-      longitude: 79.8997,
+      latitude: 6.795064608508844,
+      longitude: 79.90029484033585
     },
     droplocationCords: {},
     isLoading: false,
     coordinate: new AnimatedRegion({
-      latitude: 6.8015,
-      longitude: 79.8997,
+      latitude: 6.795064608508844,
+      longitude: 79.90029484033585,
       latitudeDelta: LATITUDE_DELTA,
       longitudeDelta: LONGITUDE_DELTA,
     }),
@@ -131,8 +131,8 @@ const Mapview = ({navigation}) => {
   // }, [droplocationCords]);
 
   const createTrip = (dist) => {
-    axios.post('http://192.168.8.146:5000/api/tripdetails/create', {
-      startingpoint: CurrentLocationCords.latitude,
+    axios.post('http:// 192.168.8.146:5000/api/tripdetails/create', {
+      startingpoint: 'Katubadda',
       destination: droplocationCords.Destination,
       date: new Date(),
       distance: dist
