@@ -11,6 +11,7 @@ import {
   Dimensions,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import {GOOGLE_MAPS_APIKEY} from '../constant/GoogleKey';
 import imagePath from '../constant/imagePath';
@@ -99,6 +100,17 @@ const Mapview = ({navigation}) => {
     });
   };
 
+  const onPressAccident = () =>{
+    Alert.alert('Confirmation!','Are you sure about your Command?',[
+      {text: 'No Cancel'},
+      {text: 'Yes Confirm' , onPress:(ConfirmAccident)}
+    ])
+  }
+
+  const ConfirmAccident = () =>{
+
+  }
+
   const fetchvaluefromChoseLocation = data => {
     setState({
       ...state,
@@ -112,23 +124,7 @@ const Mapview = ({navigation}) => {
     console.log('data==>>>>', data);
   };
 
-  // useEffect(() => {
-  //   if (
-  //     droplocationCords.latitude &&
-  //     droplocationCords.longitude
-  //   ) {
-  //     // debugger;
-  //     // save to database
-  //     console.log('test');
-  //     axios.post('http://192.168.8.146:5000/api/tripdetails/create', {
-  //       Tripid: 5,
-  //       startingpoint: CurrentLocationCords.latitude,
-  //       destination: droplocationCords.Destination,
-  //       date: new Date(),
-  //       distance: distance
-  //     });
-  //   }
-  // }, [droplocationCords]);
+  
 
   const createTrip = (dist) => {
     axios.post('http://192.168.43.73:5000/api/tripdetails/create', {
@@ -247,16 +243,15 @@ const Mapview = ({navigation}) => {
         >
           <Text>Chose Destination</Text>
         </TouchableOpacity>
-        <Button
-              primary
-              shadow
-               onPress={() =>
-                handleSignUp()
-              }> 
-              <Typography center white bold size={15}>
-                Met an Accident
-              </Typography> 
-            </Button>
+        <TouchableOpacity
+          gradient
+          shadow
+          style={styles.inputstyle}
+          onPress={onPressAccident}
+          // onPress={()=>console.log("hid")}
+        >
+          <Text>Met an Accident</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
