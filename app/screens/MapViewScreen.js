@@ -25,6 +25,8 @@ import {
   getCurrentLocation,
 } from '../components/Google/HelperFunction';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {log} from 'react-native-reanimated';
 
 const screen = Dimensions.get('window');
 const ASPECT_RATIO = screen.width / screen.height;
@@ -38,7 +40,7 @@ const Mapview = ({navigation}) => {
   const [state, setState] = useState({
     CurrentLocationCords: {
       latitude: 6.795064608508844,
-      longitude: 79.90029484033585
+      longitude: 79.90029484033585,
     },
     droplocationCords: {},
     isLoading: false,
@@ -50,6 +52,7 @@ const Mapview = ({navigation}) => {
     }),
     time: 0,
     distance: 0,
+    tripID: '',
   });
 
   const {
@@ -59,11 +62,37 @@ const Mapview = ({navigation}) => {
     coordinate,
     time,
     distance,
+    tripID,
   } = state;
 
   useEffect(() => {
     getLiveLocation();
+    checkCoordinates();
   }, []);
+
+  const checkCoordinates = async () => {
+    try {
+      const coordinates = await AsyncStorage.multiGet([
+        'latitude',
+        'longitude',
+        'Destination',
+      ]);
+      console.log('COORDINATES', parseFloat(coordinates));
+      if (coordinates[0][1] !== null) {
+        setState({
+          ...state,
+          droplocationCords: {
+            latitude: parseFloat(coordinates[0][1]),
+            longitude: parseFloat(coordinates[1][1]),
+            Destination: coordinates[2][1],
+          },
+        });
+      }
+    } catch (e) {
+      // read error
+      console.log(e);
+    }
+  };
 
   const getLiveLocation = async () => {
     const locationPermissionDenied = await locationPermission();
@@ -100,18 +129,33 @@ const Mapview = ({navigation}) => {
     });
   };
 
-  const onPressAccident = () =>{
-    Alert.alert('Confirmation!','Are you sure about your Command?',[
+  const onPressAccident = () => {
+    Alert.alert('Confirmation!', 'Are you sure about your Command?', [
       {text: 'No Cancel'},
-      {text: 'Yes Confirm' , onPress:(ConfirmAccident)}
-    ])
-  }
+      {text: 'Yes Confirm', onPress: ConfirmAccident},
+    ]);
+  };
 
-  const ConfirmAccident = () =>{
+  const ConfirmAccident = () => {
+    console.log(tripID);
+    axios
+      .post('http://192.168.43.73:5000/api/tripdetails/create', {
+        TripId: tripID,
+        Location_longitude:CurrentLocationCords.longitude,
+        Location_latitude:CurrentLocationCords.latitude,
+        date: new Date()
+      })
+      .then(response => {
+        let Resp = response.data;
+        console.log(Resp);
+        Alert.alert('Successful!', Resp.msg, [{text: 'Ok'}]);
+      })
+      .catch(error => {
+        console.log(error.toString());
+      });
+  };
 
-  }
-
-  const fetchvaluefromChoseLocation = data => {
+  const fetchvaluefromChoseLocation = async data => {
     setState({
       ...state,
       droplocationCords: {
@@ -121,25 +165,49 @@ const Mapview = ({navigation}) => {
         Destination: data.droplocationCords.Destination,
       },
     });
+    try {
+      const latitude = [
+        'latitude',
+        JSON.stringify(data.droplocationCords.latitude),
+      ];
+      const longitude = [
+        'longitude',
+        JSON.stringify(data.droplocationCords.longitude),
+      ];
+      const Destination = [
+        'Destination',
+        JSON.stringify(data.droplocationCords.Destination),
+      ];
+
+      await AsyncStorage.multiSet([latitude, longitude, Destination]);
+    } catch (e) {
+      // save error
+      console.log(e);
+    }
     console.log('data==>>>>', data);
   };
 
-  
-
-  const createTrip = (dist) => {
-    axios.post('http://192.168.43.73:5000/api/tripdetails/create', {
-      startingpoint: 'Katubadda',
-      destination: droplocationCords.Destination,
-      date: new Date(),
-      distance: dist
-    });
+  const createTrip = dist => {
+    axios
+      .post('http://192.168.43.73:5000/api/tripdetails/create', {
+        startingpoint: 'Katubadda',
+        destination: droplocationCords.Destination,
+        date: new Date(),
+        distance: dist,
+      })
+      .then(response => {
+        let Resp = response.data;
+        console.log(Resp);
+        setState({...state, tripID: Resp.TripId});
+      })
+      .catch(error => {
+        console.log(error.toString());
+      });
   };
 
-  const InformAccident = () =>{
-    axios.post('',{
-
-    })
-  }
+  const InformAccident = () => {
+    axios.post('', {});
+  };
 
   const animate = (latitude, longitude) => {
     const newCoordinate = {latitude, longitude};
@@ -234,15 +302,17 @@ const Mapview = ({navigation}) => {
         </TouchableOpacity>
       </View>
       <View style={styles.bottomCa}>
-        <TouchableOpacity
-          gradient
-          shadow
-          style={styles.inputstyle}
-          onPress={onPressLocation}
-          // onPress={()=>console.log("hid")}
-        >
-          <Text>Chose Destination</Text>
-        </TouchableOpacity>
+        {Object.keys(droplocationCords).length === 0 && (
+          <TouchableOpacity
+            gradient
+            shadow
+            style={styles.inputstyle}
+            onPress={onPressLocation}
+            // onPress={()=>console.log("hid")}
+          >
+            <Text>Chose Destination</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
           gradient
           shadow

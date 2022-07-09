@@ -1,11 +1,13 @@
 import {StyleSheet, StatusBar} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Screen, Block, Typography, Button} from '../components/index';
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import routes from '../navigation/routes';
 import {colors} from '../theme';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 const WelcomeScreen = () => {
   const navigation = useNavigation();
@@ -13,6 +15,10 @@ const WelcomeScreen = () => {
   const handleNavigation = route => {
     navigation.navigate(route);
   };
+
+  useEffect(() => {
+    AsyncStorage.clear();
+  }, []);
 
   return (
     <Screen>
